@@ -104,6 +104,21 @@ app.get("/skirts",function(req,res){
     })
 });
 
+app.get("/frocks",function(req,res){
+    var txt_sql = "select * from Nhom6_Product where NameProd like 'frock%'";
+    sql.query(txt_sql,function (err,rows){
+        if(err){
+            res.render("frocks",{
+                dssp:[]
+            })
+        }else{
+            res.render("frocks",{
+                dssp:rows.recordset
+            })
+        }
+    })
+});
+
 app.get("/pt-tshirts",function(req,res){
     var txt_sql = "select * from Nhom6_Product where NameProd like 'p.t%shirt%'";
     sql.query(txt_sql,function (err,rows){
