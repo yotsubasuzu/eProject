@@ -14,6 +14,7 @@
         <table class="table">
             <thead>
             <th>Mã sản phẩm</th>
+            <th>Ảnh sản phẩm</th>
             <th>Tên sản phẩm</th>
             <th>Giá</th>
             </thead>
@@ -21,6 +22,7 @@
             <% dssp.forEach(function(e){%>
                 <tr>
                     <td><%= e.IdProd %></td>
+                    <td><img src="<%= e.Images %>" height="200"/></td>
                     <td><%= e.NameProd %></td>
                     <td><%= e.Price %></td>
                 </tr>
