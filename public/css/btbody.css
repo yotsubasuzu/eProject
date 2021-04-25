@@ -1,0 +1,130 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    color:#222222;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+    font-family: 'Open Sans';
+    background-color: #fafafa;
+    padding-top: 10px;
+}
+.section{
+    float:left;
+    width: 100%;
+}
+.container{
+    float:none;
+    width: 1170px;
+    margin:0 auto;
+}
+.main{
+    margin-top: 30px;
+}
+.content{
+    float: left;
+    background-color: #ffffff;
+}
+.sidebar{
+    float: left;
+}
+.header{
+    background-color: #ffffff;
+    border-bottom: 1px solid red;
+    padding: 20px 0;
+}
+.sidebar .sidebar-name{
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 15px;
+}
+.sidebar .sidebar-tab li{
+    list-style: none;
+    font-size: 14px;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+.sidebar .sidebar-tab label{
+    padding-right: 5px;
+}
+.sidebar-tab{
+    border: 1px solid #ddd;
+    margin-bottom: 25px;
+}
+.sidebar hr{
+    border: none;
+    background-color: #ff0000;
+    height: 2px;
+    margin-left: 10px;
+    width: calc(100% - 20px);
+}
+.columns-3{
+    grid-template-columns: repeat(3,1fr);
+    display: grid;
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+}
+.content .product{
+    border: 1px solid #ddd;
+    position: relative;
+}
+.content .image img{
+    max-height: 270px;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+}
+.product .image{
+    padding: 6px 5px;
+    height: 332px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+.content .des{
+    padding: 15px 15px;
+}
+.content .des .pr-name{
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.des .code{
+    font-size: 16px;
+}
+.des .cost{
+    font-size: 16px;
+    font-weight: 600;
+    color: #ff0000;
+}
+.content .des button{
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid red;
+    text-transform: uppercase;
+}
+button:hover{
+    color: #ffffff;
+    background-color: #ff0000;
+}
+a:hover{
+    color: #ff0000;
+}
+a{
+    color: #222222;
+    text-decoration: none;
+
+}
+a:hover, a:focus, a:visited {
+    text-decoration: none;
+}
+.sidebar.col-md-3.col-sm-6.col-xs-12 {
+    float: left !important;
+}

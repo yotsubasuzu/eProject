@@ -1,0 +1,343 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    color:#222222;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+    font-family: 'Open Sans';
+    background-color: #fafafa;
+    padding-top: 10px;
+}
+.section{
+    float:left;
+    width: 100%;
+}
+.container{
+    float:none;
+    width: 1170px;
+    margin:0 auto;
+}
+.main{
+    margin-top: 30px;
+}
+.content{
+    float: left;
+    padding-bottom: 15px;
+}
+.sidebar{
+    float: left;
+}
+.header{
+    background-color: #fafafa;
+    border-bottom: 1px solid red;
+    padding: 20px 0;
+}
+.content-img{
+    float: left;
+}
+.content .pr-img .picture{
+    height: auto;
+    width: 100%;
+    border: 1px solid #22d6ac;
+    padding: 15px 5px;
+    margin-right: 30px;
+    margin-bottom: 5px;
+}
+.content-img .thumbnails img{
+    width: 100%;
+    height: auto;
+}
+.content-img .thumbnails li{
+    float: left;
+    list-style: none;
+}
+.pr-info{
+    float: left;
+}
+.pr-info .top-info{
+    padding-left: 13px;
+}
+.pr-info .size{
+    margin-bottom: 80px;
+    padding-left: 13px;
+}
+.pr-info .amount{
+    padding-left: 13px;
+}
+.pr-des{
+    float: left;
+    margin-left: 5px;
+}
+.pr-info .pr-name{
+    font-size: 21px;
+    font-weight: 600;
+    margin-bottom: 35px;
+    margin-top: 0;
+}
+.pr-info .pr-cost{
+    font-size: 23px;
+    color: #ff0000;
+    font-weight: 600;
+}
+.pr-info .material{
+    font-size: 14px;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+.pr-info button[id=wholesale]{
+    font-size: 18px;
+    color: #ffffff;
+    background-color: #ff0000;
+    height: 45px;
+    width: 100%;
+    margin-bottom: 40px;
+    border: none;
+}
+.pr-info #wholesale a{
+    text-decoration: none;
+    color: #ffffff;
+}
+.pr-info .size-now{
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.pr-sizes li{
+    float: left;
+    list-style: none;
+}
+.pr-sizes li button[name=number-size]{
+    width: 50px;
+    height: 30px;
+    border: none;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #ff0000;
+    margin-right: 10px;
+    border-radius: 10%;
+}
+
+.choose-amount{
+    margin-bottom: 40px;
+}
+.tittle-amount{
+    font-size: 16px;
+    font-weight: 600;
+}
+.choose-amount input[id=cre]{
+    width: 28px;
+    height: 30px;
+    font-size: 20px;
+    border: none;
+}
+.choose-amount input[id=quantity]{
+    width: 65px;
+    height: 30px;
+    text-align: center;
+}
+.buy-pr{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.buy-pr button[name=buy]{
+    width: calc(50% - 10px);
+    height: 40px;
+    font-size: 18px;
+    margin-left: 5px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #ff0000;
+    border: none;
+}
+.order p{
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.order button[id=phone]{
+    width: 172px;
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 4px;
+    margin-bottom: 40px;
+    font-size: 21px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #08d408;
+    border: none;
+    border-radius: 40px;
+}
+.pr-des{
+    float: left;
+}
+.pr-des h3{
+    font-size: 23px;
+    font-weight: 600;
+    padding-left: 20px;
+}
+.pr-des .p-des-name{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.pr-des .p-des{
+    width: 100%;
+    font-size: 15px;
+    border: 1px solid #34e5c2;
+    padding: 25px 15px 25px;
+}
+.pr-des a{
+    font-weight: 600;
+    color: #222222;
+    text-decoration: underline;
+}
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, .4);
+}
+.modal-header{
+    height: 100px;
+    width: 100%;
+    margin-bottom: 15px;
+    background-color: #ff0000;
+    color: #fafafa;
+    border-radius: 5px;
+}
+.modal-header h4{
+    font-size: 19px;
+    font-weight: 600;
+    text-align: center;
+}
+.modal-content {
+    width: 100%;
+    background-color: #26ae26;
+    padding: 10px;
+    border: 1px solid #222222;
+    height: 100%;
+    border-radius: 10px;
+}
+.modal-body{
+    width: 100%;
+}
+.modal-body .form-group{
+    float: left;
+}
+.modal-body input{
+    width: 100%;
+    height: 30px;
+    margin-top: 5px;
+    border: 1px solid red;
+}
+.modal-footer button{
+    float: right;
+    font-size: 15px;
+    margin-left: 15px;
+    margin-top: 20px;
+    width: 70px;
+    height: 25px;
+    padding: 2px 10px;
+    background-color: #ff0000;
+    color: #fafafa;
+    border: none;
+}
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    width: 25px;
+    height: 25px;
+}
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.sidebar .sidebar-img{
+    border: 1px solid #34e5c2;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.sidebar .related-pr{
+    padding: 10px 10px;
+    border: 1px solid #34e5c2;
+}
+.sidebar .list-related{
+    margin-top: 10px;
+}
+.sidebar .list-related .item-related{
+    float: left;
+}
+.sidebar .sidebar-img img{
+    width: 100%;
+    height: auto;
+}
+.item-related .cap{
+    font-size: 14px;
+    font-weight: 600;
+}
+.sidebar .related-pr .sidebar-tittle{
+    font-size: 18px;
+    text-align: center;
+}
+.sidebar .list-related .item-related{
+    padding: 5px 0;
+    border-bottom: 1px dotted #34e5c2;
+}
+.sidebar .list-related .item-related img{
+    float: left;
+    width: 80px;
+    height: auto;
+}
+.sidebar .list-related .item-info{
+    float: left;
+    width: calc(100% - 80px);
+    padding-left: 15px;
+}
+.sidebar .related-pr hr{
+    border: none;
+    background-color: #222222;
+    height: 2px;
+    width: calc(100% - 10px);
+}
+.item-info, .pr-des a:hover{
+    color: #f54a4a;
+}
+.item-info a{
+    color: #222222;
+    text-decoration: none;
+}
+.item-info a:hover,
+.item-info a:focus,
+.item-info a:visited {
+    text-decoration: none;
+}
+.top-info button:hover{
+    background-color: #ba0404;
+    font-size: 21px;
+}
+.size .pr-sizes button:hover{
+    background-color: #ba0404;
+}
+.amount .buy-pr button:hover{
+    color: #ff0000;
+    background-color: #fafafa;
+    border: 1px solid #ff0000;
+}
+.amount .order button:hover{
+    background-color: #04a504;
+}
