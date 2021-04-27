@@ -35,23 +35,38 @@ app.get("/",function(req,res){
     })
 });
 
+app.get("/contact",function(req,res){
+    var txt_sql = "";
+    sql.query(txt_sql,function (err,rows){
+        if(err){
+            res.render("contact",{})
+        }else{
+            res.render("contact",{})
+        }
+    })
+});
+
+app.get("/showroom",function(req,res){
+    var txt_sql = "";
+    sql.query(txt_sql,function (err,rows){
+        if(err){
+            res.render("showroom",{})
+        }else{
+            res.render("showroom",{})
+        }
+    })
+});
+
 app.get("/products",function(req,res){
-    var txt_sql = "select * from Nhom6_Order_Product;" + "select * from Nhom6_OrderForm;" + "select * from Nhom6_Customer;" +
-        "select * from Nhom6_Product";
+    var txt_sql = "select * from Nhom6_Product;"
     sql.query(txt_sql,function (err,rows){
         if(err){
             res.render("products",{
-                dhsp:[],
-                dsdh:[],
-                dskh:[],
                 dssp:[]
             })
         }else{
             res.render("products",{
-                dhsp:rows.recordsets[0],
-                dsdh:rows.recordsets[1],
-                dskh:rows.recordsets[2],
-                dssp:rows.recordsets[3]
+                dssp:rows.recordset
             })
         }
     })
@@ -65,7 +80,7 @@ app.get("/search",function (req,res){
         var ds = [];
         var txt_sql = "select * from Nhom6_Product where NameProd like '%" + thamso + "%'";
         sql.query(txt_sql,function (err,rows){
-            if(err) ds = ["Khong co khach hang nao ca"];
+            if(err) ds = [""];
             else ds = rows.recordset;
             res.render("search",{
                 ds:ds
@@ -119,8 +134,23 @@ app.get("/frocks",function(req,res){
     })
 });
 
+app.get("/pt",function(req,res){
+    var txt_sql = "select * from Nhom6_Product where NameProd like '%p.t%'";
+    sql.query(txt_sql,function (err,rows){
+        if(err){
+            res.render("pt",{
+                dssp:[]
+            })
+        }else{
+            res.render("pt",{
+                dssp:rows.recordset
+            })
+        }
+    })
+});
+
 app.get("/pt-tshirts",function(req,res){
-    var txt_sql = "select * from Nhom6_Product where NameProd like 'p.t%shirt%'";
+    var txt_sql = "select * from Nhom6_Product where NameProd like '%t-shirt%'";
     sql.query(txt_sql,function (err,rows){
         if(err){
             res.render("pt-tshirts",{
@@ -164,21 +194,6 @@ app.get("/pt-trackpants",function(req,res){
     })
 });
 
-app.get("/ties",function(req,res){
-    var txt_sql = "select * from Nhom6_Product where NameProd like 'tie%'";
-    sql.query(txt_sql,function (err,rows){
-        if(err){
-            res.render("ties",{
-                dssp:[]
-            })
-        }else{
-            res.render("ties",{
-                dssp:rows.recordset
-            })
-        }
-    })
-});
-
 app.get("/belts",function(req,res){
     var txt_sql = "select * from Nhom6_Product where NameProd like 'belt%'";
     sql.query(txt_sql,function (err,rows){
@@ -195,7 +210,7 @@ app.get("/belts",function(req,res){
 });
 
 app.get("/socks",function(req,res){
-    var txt_sql = "select * from Nhom6_Product where NameProd like 'sock%'";
+    var txt_sql = "select * from Nhom6_Product where NameProd like 'socks%'";
     sql.query(txt_sql,function (err,rows){
         if(err){
             res.render("socks",{
@@ -208,4 +223,27 @@ app.get("/socks",function(req,res){
         }
     })
 });
+app.get("/ties",function(req,res){
+    var txt_sql = "select * from Nhom6_Product where NameProd like 'tie%'";
+    sql.query(txt_sql,function (err,rows){
+        if(err){
+            res.render("ties",{
+                dssp:[]
+            })
+        }else{
+            res.render("ties",{
+                dssp:rows.recordset
+            })
+        }
+    })
+});
 
+app.get("/detailproduct", async function (req,res){
+    var ten = req.query.NameProd;
+    var txt_sql = "select * from Nhom6_Product where NameProd like"+ten;
+    var kq = await sql.query(txt_sql);
+    var sp = kq.recordset;
+    res.render("detailproduct",{
+        sp:sp
+    })
+})
