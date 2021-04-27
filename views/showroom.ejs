@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
     <link rel="stylesheet" href="css/Email.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/showroom.css">
     <link rel="stylesheet" href="libs/bootstrap-4.0.0/dist/css/bootstrap.css">
     <link rel="stylesheet" href="libs/bootstrap-3.4.1/css/bootstrap.css">
     <link rel="stylesheet" href="libs/font awesome 5.15/css/all.css">
+    <title>Showroom</title>
+
     <style>
         * {
             margin: 0;
@@ -24,19 +26,37 @@
 <div id="head">
     <div class="container">
         <div class="card-deck">
-            <div class="card" style="border: none">
+            <div class="card col-md-3" style="border: none">
                 <div class="card-body" style="width: 200px">
                     <img class="card-img-top" src="imgs/Logo.png" alt="logo">
                 </div>
             </div>
-            <div class="card" style="border: none">
+            <div class="card col-md-6" style="border: none">
                 <div class="card-body" style="margin-top: 60px">
-                    <div class="topnav" style="color: #fafafa;height: 50px">
+                    <div class="topnav" style="color: #fafafa;height: 50px;width: 300px;margin-left:16%">
                         <div class="search-container" style="text-align: center">
-                            <form action="/action_page.php">
-                                <input type="text" placeholder="Tìm kiếm....." name="search">
+                            <form class="form-inline" method="get" action="/search">
+                                <input type="text" placeholder="Tìm kiếm....." name="keyword">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card" style="border: none">
+                    <div class="card-body" style="width: 300px">
+                        <div class="detail">
+                            <a class="btn btn-primary" href="#" role="button" style="color: black;margin-left:15px">Liên Hệ</a>
+                        </div>
+                        <div class="detail">
+                            <a class="btn btn-primary" href="#" role="button" style="color: black;">Giới Thiệu</a>
+                        </div>
+                        <div class="detail">
+                            <a class="btn btn-primary" href="#" role="button" style="color: black">Giỏ Hàng</a>
+                        </div>
+                        <div class="detail1" style="padding-top: 60px !important;">
+                            <a class="btn btn-primary" href="#" role="button" style="color: white;width: 250px;border: 1px groove #ed3126;background-color:#ed3126 !important; ">HƯỚNG DẪN MUA HÀNG</a>
                         </div>
                     </div>
                 </div>
@@ -51,7 +71,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="width: 100%">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="/home" id="navbarDropdown">
+                    <a class="nav-link" href="/" id="navbarDropdown">
                         <p>Home</p>
                     </a>
                     <div class="dropdown-content">
@@ -73,12 +93,12 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="/home" id="navbarDropdown">
+                    <a class="nav-link" href="/pt" id="navbarDropdown">
                         <p>P.T</p>
                     </a>
                     <div class="dropdown-content">
-                        <a class="dropdown-item" href="/pt-tshirt">T-shirts</a>
-                        <a class="dropdown-item" href="/pt-short">Shorts</a>
+                        <a class="dropdown-item" href="/pt-tshirts">T-shirts</a>
+                        <a class="dropdown-item" href="/pt-shorts">Shorts</a>
                         <a class="dropdown-item" href="/pt-trackpants">Track pants</a>
                     </div>
                 </li>
@@ -93,7 +113,7 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="/shocks" id="navbarDropdown">
+                    <a class="nav-link" href="/socks" id="navbarDropdown">
                         <p>Socks</p>
                     </a>
                 </li>
@@ -127,7 +147,15 @@
                 position: new google.maps.LatLng(20.9929572,105.8054076)
             });
             infowindow = new google.maps.InfoWindow({
-                content: '<img src="imgs/Logo.png" alt="" style="width:90px; "><div><b>A1 - Uniforms</b></div>'
+                content: '<img src="imgs/Logo.png" alt="" style="width:90px; ">' +
+                    '<b>A1 - Uniforms</b>' +
+                    '<p>Showroom<br>275 Nguyễn Trãi - Thanh Xuân - HN<br>' +
+                    '<a href="tel:0943326689" style="color: black">0943326689</a>' +
+                    '<p><a href="mailto:A1.uniforms@gmail.com" style="color: black">A1.uniforms@gmail.com</a></p>' +
+                    'Mở cửa: 8:00 - 20:30<br>' +
+                    '<a href="https://www.google.com/maps/dir//275+Nguy%E1%BB%85n+Tr%C3%A3i,+Thanh+Xu%C3%A2n+Trung,+Thanh+Xu%C3%A2n,' +
+                    '+H%C3%A0+N%E1%BB%99i/@20.9929572,105.8054076,17z/data=!3m1!4b1!4m9!4m8!1m0!1m5!1m1!1s0x3135acbf6af3c44f:' +
+                    '0xed2a3283251a5bf7!2m2!1d105.8075963!2d20.9929572!3e2" style="color: black">Tìm đường đi</a>'
             });
             google.maps.event.addListener(marker, 'click', function() {
                 infowindow.open(map, marker);
@@ -152,7 +180,7 @@
         <h3>A1<span> - UNIFORMS</span></h3>
 
         <p class="footer-links">
-            <a href="/home" class="link-1">Home</a>
+            <a href="/" class="link-1">Home</a>
 
             <a href="#">Blog</a>
 
