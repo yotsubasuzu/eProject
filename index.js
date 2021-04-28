@@ -1,3 +1,4 @@
+const e = require("express");
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 5050;
@@ -19,10 +20,17 @@ mssql.connect(config,function (err){
 });
 
 const sql = new mssql.Request();
-
+var session = require('express-session');
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true
+  }));
 app.use(express.static("public"));
 
 app.set("view engine","ejs")
+
+var Cart = require("./cart");
 
 app.get("/",function(req,res){
     var txt_sql = "";
@@ -53,6 +61,17 @@ app.get("/showroom",function(req,res){
             res.render("showroom",{})
         }else{
             res.render("showroom",{})
+        }
+    })
+});
+
+app.get("/payment",function(req,res){
+    var txt_sql = "";
+    sql.query(txt_sql,function (err,rows){
+        if(err){
+            res.render("payment",{})
+        }else{
+            res.render("payment",{})
         }
     })
 });
@@ -246,4 +265,14 @@ app.get("/detailproduct", async function (req,res){
     res.render("detailproduct",{
         sp:sp
     })
+})
+
+app.get("/add/:id", async function(req, res) {
+    var productId = req.params.id;
+    var sql_query = "select * from Nhom6_Product where IdProd = " + productId;
+    var rs = await sql.query(sql_query);
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+    cart.add(rs.recordset, productId);
+    req.session.cart = cart;
+    res.redirect(req.headers.referer);
 })
