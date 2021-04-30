@@ -11,7 +11,7 @@ module.exports = function Cart(cart) {
         cartItem.quantity++;
         cartItem.price = cartItem.item[0].Price * cartItem.quantity;
         this.totalItems++;
-        this.totalPrice += cartItem.item[0].price;
+        this.totalPrice += cartItem.item[0].Price;
     };
 
     this.remove = function(id) {

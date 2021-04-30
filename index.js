@@ -267,6 +267,26 @@ app.get("/detailproduct", async function (req,res){
     })
 })
 
+app.get("/checkout", function(req, res) {
+    if(!req.session.cart) {
+        return res.render("checkout", {
+            products: null,
+            totalPrice: 0
+        })
+    }
+    var cart = new Cart(req.session.cart);
+    res.render("checkout", {
+        products: cart.getItems(),
+        totalPrice: cart.totalPrice
+    })
+});
+
+app.get("/place-order", function(req, res) {
+    console.log("Payment received!");
+    req.session.cart = null;
+    res.redirect("/");
+});
+
 app.get("/add/:id", async function(req, res) {
     var productId = req.params.id;
     var sql_query = "select * from Nhom6_Product where IdProd = " + productId;

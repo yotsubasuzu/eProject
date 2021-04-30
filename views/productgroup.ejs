@@ -1,0 +1,48 @@
+<section class="section main">
+    <div class="col-md-12">
+        <div class="container">
+            <div class="row">
+                <aside class="sidebar col-md-3">
+                    <div class="sidebar-tab">
+                        <div class="category-product">
+                            <p class="sidebar-name">PRODUCTS</p>
+                            <hr>
+                            <div class="sidebar-list">
+                                <ul>
+                                    <li class="list"><a href="/products">All Products</a></li>
+                                    <li class="list"><a href="/shirts">Shirts</a></li>
+                                    <li class="list"><a href="/skirts">Skirts</a></li>
+                                    <li class="list"><a href="/frocks">Frocks</a></li>
+                                    <li class="list"><a href="/pt-tshirts">P.T. T-Shirts</a></li>
+                                    <li class="list"><a href="/pt-shorts">P.T. Shorts</a></li>
+                                    <li class="list"><a href="/pt-trackpants">P.T. Trackpants</a></li>
+                                    <li class="list"><a href="/belts">Belts</a></li>
+                                    <li class="list"><a href="/socks">Socks</a></li>
+                                    <li class="list"><a href="/ties">Ties</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+                <article class="content col-md-9">
+                    <div class="row">
+                        <% dssp.forEach(function(e){%>
+                            <div class="product">
+                                <div class="image">
+                                    <a href="/detailproduct?NameProd='<%= e.NameProd %>'"><img src="<%= e.Images %>" height="200" width="220"/>
+                                    </a></div>
+                                <div class="des">
+                                    <h3 class="pr-name"><a href="/detailproduct?NameProd='<%= e.NameProd %>'"><%= e.NameProd %></a></h3>
+                                    <p class="cost">$<%= e.Price %></p>
+                                    <a href="/detailproduct?NameProd='<%= e.NameProd %>'">
+                                        <button id="detail" type="button" name="detail" >Detail</button>
+                                    </a>
+                                </div>
+                            </div>
+                        <%})%>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
