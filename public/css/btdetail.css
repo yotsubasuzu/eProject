@@ -8,40 +8,135 @@ body{
     font-size: 14px;
     line-height: 1.5;
     font-weight: 400;
-    font-family: 'Open Sans', sans-serif;
+    background-color: white;
 }
-img{
-    max-width: 100%;
+.main{
+    margin-bottom: 50px;
+}
+.content-img{
+    float: left;
+}
+.content .pr-img .picture{
+    height: auto;
+    width: 100%;
+    border: 1px solid #22d6ac;
+    padding: 15px 5px;
+}
+.content-img .thumbnails img{
+    width: 100%;
+    height: auto;
+}
+.content-img .thumbnails li{
+    float: left;
+    list-style: none;
 }
 .pr-info{
     float: left;
 }
-.pr-info .size{
-    margin-bottom: 80px;
-    padding-left: 13px;
-}
-.pr-info .amount{
-    padding-left: 13px;
-}
-.pr-des{
-    float: left;
-    margin-left: 5px;
+.pr-info .top-info{
+    margin-bottom: 40px;
+    padding-left: 15px;
 }
 .pr-info .pr-name{
     font-size: 21px;
     font-weight: 600;
-    margin: 15px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    padding-top: 0;
 }
 .pr-info .pr-cost{
     font-size: 23px;
     color: #ed3126;
     font-weight: 600;
-    margin: 15px;
 }
-.pr-info .size-now{
+.top-info .material{
+    font-style: italic;
+    margin-bottom: 20px;
+}
+#wholesale{
+    background-color: #ed3126;
+    width: 100%;
+    color: #fafafa;
+    height: 50px;
+}
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, .4);
+}
+.modal-header{
+    height: auto;
+    width: 100%;
+    background-color: #ed3126;
+    color: #fafafa;
+    border-radius: 5px;
+}
+.modal-header h4{
+    font-size: 19px;
+    font-weight: 600;
+    text-align: center;
+}
+.modal-content {
+    width: 400px;
+    background-color: #fafafa;
+    height: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}
+.modal-body{
+    width: 100%;
+    margin-top: 15px;
+}
+.modal-body .form-group{
+    float: left;
+    width: 48%;
+}
+.modal-body #form-left{
+    float: right;
+}
+.modal-body input{
+    width: 100%;
+    height: 35px;
+    border: 1px solid #ed3126;
+}
+.modal-body #submit{
+    width: 100%;
+}
+.modal-body button{
+    float: right;
+    font-size: 15px;
+    width: 70px;
+    height: 35px;
+    padding: 2px 10px;
+    margin-top: 20px;
+    margin-left: 10px;
+    background-color: #ed3126;
+    color: #fafafa;
+    border: none;
+}
+.close {
+    color: #aaaaaa;
+    float: left;
+    font-size: 21px;
+    font-weight: 600;
+    width: 25px;
+    height: 25px;
+}
+.pr-info .size{
+    margin-bottom: 80px;
+    padding-left: 15px;
+}
+.pr-info .size .size-now{
+    margin-bottom: 20px;
     font-size: 14px;
     font-weight: 600;
-    margin: 15px 0;
 }
 .pr-sizes li{
     float: left;
@@ -55,15 +150,18 @@ img{
     color: #ffffff;
     background-color: #ed3126;
     margin-right: 10px;
-    border-radius: 10%;
+    border-radius: 5%;
 }
-
-.choose-amount{
-    margin-bottom: 40px;
+.pr-info .amount{
+    float: left;
+    padding-left: 15px;
 }
-.tittle-amount{
+.title-amount{
     font-size: 16px;
     font-weight: 600;
+}
+.choose-amount{
+    margin-bottom: 40px;
 }
 .choose-amount input[id=cre]{
     width: 28px;
@@ -80,18 +178,19 @@ img{
     width: 100%;
     margin-bottom: 20px;
 }
-.buy-pr button[name=buy]{
-    width: calc(50% - 10px);
+.amount .buy-pr button[name=buy]{
+    width: calc(50% - 8px);
     height: 40px;
     font-size: 18px;
-    margin-left: 5px;
+    margin-left: 4px;
     font-weight: 600;
     color: #ffffff;
     background-color: #ed3126;
     border: none;
 }
-.buy-pr a{
-    color: white;
+.amount .buy-pr a{
+    color: #FFFFFF;
+    text-decoration: none;
 }
 .order p{
     font-size: 20px;
@@ -100,7 +199,7 @@ img{
     margin-bottom: 20px;
 }
 .order button[id=phone]{
-    width: 172px;
+    width: 170px;
     height: 40px;
     margin-left: 5px;
     margin-right: 5px;
@@ -108,7 +207,7 @@ img{
     font-size: 21px;
     font-weight: 600;
     color: #ffffff;
-    background-color: #08d408;
+    background-color: #6dbe14;
     border: none;
     border-radius: 40px;
 }
@@ -136,70 +235,9 @@ img{
     color: #222222;
     text-decoration: underline;
 }
-.modal{
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, .4);
-}
-.modal-header{
-    height: 100px;
-    width: 100%;
-    margin-bottom: 15px;
-    background-color: #ed3126;
+.form-group button:hover{
     color: #fafafa;
-    border-radius: 5px;
-}
-.modal-header h4{
-    font-size: 19px;
-    font-weight: 600;
-    text-align: center;
-}
-.modal-content {
-    width: 100%;
-    background-color: #26ae26;
-    padding: 10px;
-    border: 1px solid #222222;
-    height: 100%;
-    border-radius: 10px;
-}
-.modal-body{
-    width: 100%;
-}
-.modal-body .form-group{
-    float: left;
-}
-.modal-body input{
-    width: 100%;
-    height: 30px;
-    margin-top: 5px;
-    border: 1px solid #ed3126;
-}
-.modal-footer button{
-    float: right;
-    font-size: 15px;
-    margin-left: 15px;
-    margin-top: 20px;
-    width: 70px;
-    height: 25px;
-    padding: 2px 10px;
-    background-color: #ed3126;
-    color: #fafafa;
-    border: none;
-}
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 21px;
-    font-weight: bold;
-    width: 25px;
-    height: 25px;
+    background-color: #b31b12;
 }
 .close:hover,
 .close:focus {
@@ -221,6 +259,7 @@ img{
 }
 .sidebar .list-related .item-related{
     float: left;
+    width: 230px;
 }
 .sidebar .sidebar-img img{
     width: 100%;
@@ -230,12 +269,12 @@ img{
     font-size: 14px;
     font-weight: 600;
 }
-.sidebar .related-pr .sidebar-tittle{
+.sidebar .related-pr .sidebar-title{
     font-size: 18px;
     text-align: center;
 }
 .sidebar .list-related .item-related{
-    padding: 5px 0;
+    padding: 5px 5px;
     border-bottom: 1px dotted #34e5c2;
 }
 .sidebar .list-related .item-related img{
@@ -255,7 +294,7 @@ img{
     width: calc(100% - 10px);
 }
 .item-info, .pr-des a:hover{
-    color: #f54a4a;
+    color: #ed3126;
 }
 .item-info a{
     color: #222222;
@@ -266,13 +305,15 @@ img{
 .item-info a:visited {
     text-decoration: none;
 }
-.top-info button[id=wholesale]:hover{
-    background-color: #ba261e;
+.item-info a:hover{
+    color: #ed3126;
+}
+#wholesale:hover{
+    background-color: #b31b12;
     font-size: 21px;
-    border: 1px solid #ed3126;
 }
 .size .pr-sizes button:hover{
-    background-color: #ed3126;
+    background-color: #b31b12;
 }
 .amount .buy-pr button:hover{
     color: #ed3126;
@@ -282,15 +323,14 @@ img{
 .amount .order button:hover{
     background-color: #04a504;
 }
-#wholesale{
-    background-color: #ed3126;
-    width: 100%;
-    margin-left: 15px;
-    color: #fafafa;
+.amount .buy-pr a:hover{
+    color: #ed3126;
+    background-color: #fafafa;
+    text-decoration: none;
 }
-.material{
-    margin-left: 15px;
+.easyzoom {
+    display: inline-block;
 }
-.main{
-    margin-bottom: 50px;
+.easyzoom img {
+    vertical-align: bottom;
 }

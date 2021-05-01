@@ -54,24 +54,13 @@ app.get("/contact",function(req,res){
     })
 });
 
-app.get("/showroom",function(req,res){
+app.get("/aboutus",function(req,res){
     var txt_sql = "";
     sql.query(txt_sql,function (err,rows){
         if(err){
-            res.render("showroom",{})
+            res.render("aboutus",{})
         }else{
-            res.render("showroom",{})
-        }
-    })
-});
-
-app.get("/payment",function(req,res){
-    var txt_sql = "";
-    sql.query(txt_sql,function (err,rows){
-        if(err){
-            res.render("payment",{})
-        }else{
-            res.render("payment",{})
+            res.render("aboutus",{})
         }
     })
 });
@@ -94,15 +83,15 @@ app.get("/products",function(req,res){
 app.get("/search",function (req,res){
     var thamso = req.query.keyword;
     if(thamso==undefined){
-        res.render("search",{ds:[]})
+        res.render("search",{dssp:[]})
     }else{
-        var ds = [];
+        var dssp = [];
         var txt_sql = "select * from Nhom6_Product where NameProd like '%" + thamso + "%'";
         sql.query(txt_sql,function (err,rows){
-            if(err) ds = [""];
-            else ds = rows.recordset;
+            if(err) dssp = [""];
+            else dssp = rows.recordset;
             res.render("search",{
-                ds:ds
+                dssp:dssp
             });
         });
     }
@@ -258,12 +247,16 @@ app.get("/ties",function(req,res){
 });
 
 app.get("/detailproduct", async function (req,res){
-    var ten = req.query.NameProd;
-    var txt_sql = "select * from Nhom6_Product where NameProd like"+ten;
-    var kq = await sql.query(txt_sql);
-    var sp = kq.recordset;
+    var name = req.query.NameProd;
+    var name2 = name.split(" ")[0];
+    var txt_sql1 = "SELECT Top 5 * from Nhom6_Product where NameProd like "+name2+"%' ORDER BY NEWID()";
+    var kq1 = await sql.query(txt_sql1);
+    var gp = kq1.recordset;
+    var txt_sql2 = "select * from Nhom6_Product where NameProd like"+name;
+    var kq2 = await sql.query(txt_sql2);
     res.render("detailproduct",{
-        sp:sp
+        gp:gp,
+        sp:kq2.recordset
     })
 })
 
