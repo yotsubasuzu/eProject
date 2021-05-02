@@ -328,9 +328,21 @@ body{
     background-color: #fafafa;
     text-decoration: none;
 }
-.easyzoom {
-    display: inline-block;
+.zoom{
+    display:inline-block;
+    position: relative;
+}.zoom:after{
+     content:'';
+     display:block;
+     width:33px;
+     height:33px;
+     position:absolute;
+     top:0;
+     right:0;
+     /*background:url(icon.png);*/
 }
-.easyzoom img {
-    vertical-align: bottom;
+.zoom img{
+    display: block;
 }
+
+.zoom img::selection{ background-color: transparent;}

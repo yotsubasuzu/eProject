@@ -6,7 +6,6 @@ const port = process.env.PORT || 5050;
 app.listen(port,function (){
     console.log("server is running...");
 });
-
 const mssql = require("mssql");
 const config = {
     server:"118.70.125.210",

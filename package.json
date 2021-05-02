@@ -14,7 +14,6 @@
     "express-session": "^1.17.1",
     "mssql": "^6.3.1"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yotsubasuzu/eProject.git"
