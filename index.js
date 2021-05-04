@@ -266,7 +266,7 @@ app.get("/detailproduct", async function (req,res){
 
 app.get("/cart", function(req, res) {
     if(!req.session.cart) {
-        return res.render("cart", {
+        return res.render("checkout", {
             products: null,
             totalPrice: 0
         })
