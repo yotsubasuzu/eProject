@@ -1,0 +1,68 @@
+<%- include('payment-overview.ejs') %>
+
+
+<section id="payment" class="m-top">
+<div class="row">
+    <div class="col-md-6"> 
+        <h2>Billing information</h2>
+
+        <address>
+            <%= billing.firstname %> <%= billing.lastname %><br>
+            <%= billing.email %> <%= billing.phone %><br>
+            <%= billing.address %>  <%= billing.zip %> <%= billing.city %>
+        </address>
+
+    </div>
+    <div class="col-md-6"> 
+        <h2>Shipping information</h2>
+
+        <% if(shipping) { %>
+
+        <address>
+            <%= shipping.firstname %> <%= shipping.lastname %><br>
+            <%= shipping.email %> <%= shipping.phone %><br>
+            <%= shipping.address %>  <%= shipping.zip %> <%= shipping.city %>
+        </address>
+
+        <% } else { %>
+            <address>
+            <%= billing.firstname %> <%= billing.lastname %><br>
+            <%= billing.email %> <%= billing.phone %><br>
+            <%= billing.address %>  <%= billing.zip %> <%= billing.city %>
+            </address>
+        <% } %>
+
+    </div>
+</div>
+<div class="row m-top">
+    <div class="col-md-6">
+        <h2>Your order</h2>
+        <table class="order">
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(products !==null) { products.forEach(function(e){%>
+                <tr>
+                    <td><%= e.item[0].NameProd %></td>
+                    <td><%= e.quantity%></td>
+                    <td>$ <%= e.price %></td>
+                </tr>
+                <% }) } %> 
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h2>Total</h2>
+        <% var myPrice=0 %>
+        <% products.forEach(function(e) { myPrice +=e.price } ) %>
+        <p id="total">$ <%= myPrice %></p>
+        <input id="placeOrderBtn" type="submit" value="Place order" class="btn">
+    </div>
+</div>
+</section>                        
+   

@@ -30,6 +30,11 @@ app.use(express.static("public"));
 app.set("view engine","ejs")
 
 var Cart = require("./cart");
+const validator = require('validator');
+const bp = require('body-parser');
+
+app.use(bp.json());
+app.use(bp.urlencoded({extended : true}))
 
 app.get("/",function(req,res){
     var txt_sql = "";
@@ -259,9 +264,9 @@ app.get("/detailproduct", async function (req,res){
     })
 })
 
-app.get("/checkout", function(req, res) {
+app.get("/cart", function(req, res) {
     if(!req.session.cart) {
-        return res.render("checkout", {
+        return res.render("cart", {
             products: null,
             totalPrice: 0
         })
@@ -273,12 +278,6 @@ app.get("/checkout", function(req, res) {
     })
 });
 
-app.get("/place-order", function(req, res) {
-    console.log("Payment received!");
-    req.session.cart = null;
-    res.redirect("/");
-});
-
 app.get("/add/:id", async function(req, res) {
     var productId = req.params.id;
     var sql_query = "select * from Nhom6_Product where IdProd = " + productId;
@@ -287,4 +286,174 @@ app.get("/add/:id", async function(req, res) {
     cart.add(rs.recordset, productId);
     req.session.cart = cart;
     res.redirect(req.headers.referer);
-})
+});
+
+app.get("/remove/:id", function(req, res) {
+    var prodId = req.params.id;
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
+    cart.remove(prodId);
+    res.redirect(req.headers.referer);
+});
+
+
+app.get('/billing-shipping', (req, res, next) => {
+    res.render('billing-shipping', {
+        title: 'Billing and shipping',
+        section: 'billing'
+    });
+
+});
+
+app.get('/payment', (req, res, next) => {
+
+    const billing = req.session.billing;
+    const shipping = req.session.shipping;
+    var cart = new Cart(req.session.cart);
+    if(!billing) {
+        res.redirect('/billing-shipping');
+        return;
+    }
+
+    res.render('payment', {
+        title: 'Payment',
+        section: 'payment',
+        billing,
+        shipping,
+        products : cart.getItems()
+    });
+});
+
+app.get('/thank-you', (req, res, next) => {
+    if(req.session.billing) {
+        res.render('thank-you', {
+            title: 'Order complete',
+            section: 'thank-you',
+            billing: req.session.billing
+        });
+    } else {
+        res.redirect('/checkout');
+    }
+});
+
+app.get('/back-home', (req, res, next) => {
+    req.session.destroy();
+    res.redirect("/");
+});
+
+app.post('/billing-shipping', (req, res, next) => {
+    const post = req.body;
+    const errors = [];
+
+    if(validator.isEmpty(post.billing_first_name)) {
+        errors.push({
+            param: 'billing_first_name',
+            msg: 'Required field.'
+        });
+    }
+    if(validator.isEmpty(post.billing_last_name)) {
+        errors.push({
+            param: 'billing_last_name',
+            msg: 'Required field.'
+        });
+    }
+    if(!validator.isEmail(post.billing_email)) {
+        errors.push({
+            param: 'billing_email',
+            msg: 'Invalid e-mail address.'
+        });
+    }
+
+    if(validator.isEmpty(post.billing_address)) {
+        errors.push({
+            param: 'billing_address',
+            msg: 'Required field.'
+        });
+    }
+
+    if(validator.isEmpty(post.billing_city)) {
+        errors.push({
+            param: 'billing_city',
+            msg: 'Required field.'
+        });
+    }
+
+    if(!validator.isNumeric(post.billing_zip)) {
+        errors.push({
+            param: 'billing_zip',
+            msg: 'Invalid postal code.'
+        });
+    }
+
+    if(!post.same_as) {
+        if(validator.isEmpty(post.shipping_first_name)) {
+            errors.push({
+                param: 'shipping_first_name',
+                msg: 'Required field.'
+            });
+        }
+        if(validator.isEmpty(post.shipping_last_name)) {
+            errors.push({
+                param: 'shipping_last_name',
+                msg: 'Required field.'
+            });
+        }
+        if(!validator.isEmail(post.shipping_email)) {
+            errors.push({
+                param: 'shipping_email',
+                msg: 'Invalid e-mail address.'
+            });
+        }
+
+        if(validator.isEmpty(post.shipping_address)) {
+            errors.push({
+                param: 'shipping_address',
+                msg: 'Required field.'
+            });
+        }
+
+        if(validator.isEmpty(post.shipping_city)) {
+            errors.push({
+                param: 'shipping_city',
+                msg: 'Required field.'
+            });
+        }
+
+        if(!validator.isNumeric(post.shipping_zip)) {
+            errors.push({
+                param: 'shipping_zip',
+                msg: 'Invalid postal code.'
+            });
+        }
+    }
+
+    if(errors.length > 0) {
+        res.json({ errors });
+    } else {
+        const billing = {};
+
+
+        for(let prop in post) {
+            if(prop.startsWith('billing')) {
+                let key = prop.replace('billing', '').replace(/_/g, '');
+                billing[key] = post[prop];
+            }
+        }
+
+        req.session.billing = billing;
+
+        if(!post.same_as) {
+            const shipping = {};
+
+            for(let prop in post) {
+                if(prop.startsWith('shipping')) {
+                    let key = prop.replace('shipping', '').replace(/_/g, '');
+                    shipping[key] = post[prop];
+                }
+            }
+
+            req.session.shipping = shipping;
+        }
+
+        res.json({ saved: true });
+    }
+});
